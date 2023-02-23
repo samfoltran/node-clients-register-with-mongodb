@@ -1,5 +1,11 @@
 module.exports = class ClientController {
 
+    static list(req, res){
+        const clients = []
+        const clients_exist = (clients.length > 0) ? true : false
+        res.render('clients/list', {clients_exist, clients})
+    }
+    
     static create(req, res){
         res.render('clients/create')
     }

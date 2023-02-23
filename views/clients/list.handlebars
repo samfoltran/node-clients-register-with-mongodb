@@ -1,0 +1,25 @@
+<h1>Clients List</h1>
+
+{{#if clients_exist}}
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Ocuppation</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each clients}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.age}}</td>
+            <td>{{this.occupation}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+<p>No clients registered. <a href="/clients/create">Register Clients</a></p>
+{{/if}}
