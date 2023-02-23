@@ -25,4 +25,10 @@ module.exports = class ClientController {
         
     }
 
+    static async delete(req, res) {
+        const id = req.body.id
+        await Client.deleteOne({_id: id})
+        res.redirect('/clients/list')
+    }
+
 }
