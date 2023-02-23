@@ -1,7 +1,9 @@
+const Client = require('../models/Client')
+
 module.exports = class ClientController {
 
-    static list(req, res){
-        const clients = []
+    static async list(req, res){
+        const clients = await Client.find().lean()
         const clients_exist = (clients.length > 0) ? true : false
         res.render('clients/list', {clients_exist, clients})
     }
@@ -10,15 +12,17 @@ module.exports = class ClientController {
         res.render('clients/create')
     }
 
-    static insert(req, res){
+    static async insert(req, res){
+
         const name = req.body.name
         const age = req.body.age
         const occupation = req.body.occupation
 
-        console.log('ClientRegister Model not created.')
-        console.log(`Data: {${name}, ${age}, ${occupation}}`)
+        const client = new Client({ name, age, occupation })
+        await client.save()
 
-        res.redirect('/')
+        res.redirect('/clients/list')
+        
     }
 
 }

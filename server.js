@@ -1,6 +1,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const router = require('./routes/router.js')
+require('./database/connection')
 
 const app = express()
 
