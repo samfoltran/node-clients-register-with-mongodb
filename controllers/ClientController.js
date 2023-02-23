@@ -31,4 +31,23 @@ module.exports = class ClientController {
         res.redirect('/clients/list')
     }
 
+    static async edit(req, res) {
+        const id = req.body.id
+        const client = await Client.findOne({_id: id}).lean()
+        res.render('clients/edit', {client})
+    }
+
+    static async update(req, res) {
+        const id = req.body.id
+        const name = req.body.name
+        const age = req.body.age
+        const occupation = req.body.occupation
+
+        await Client.updateOne(
+            { _id: id },
+            { name, age, occupation }
+        )
+        res.redirect('/clients/list')
+    }
+
 }
